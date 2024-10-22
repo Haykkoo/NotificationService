@@ -32,6 +32,7 @@ namespace NotificationService
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
             _channel.QueueDeclare(queue: "notificationQueue", durable: true, exclusive: false, autoDelete: false, arguments: null);
+            //new version
         }
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
@@ -44,7 +45,6 @@ namespace NotificationService
                 _logger.LogInformation(message: $"Received message: {message}");
 
 
-                // Here you can implement the notification logic (e.g., send email/SMS)
                 SendNotification(message);
             };
 
@@ -55,7 +55,6 @@ namespace NotificationService
 
         private void SendNotification(string message)
         {
-            // Placeholder for sending notification (Email/SMS)
             _logger.LogInformation($"Notification sent: {message}");
         }
 
